@@ -60,7 +60,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "var(--font-open-sans)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -69,6 +69,7 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        display: ["var(--font-zen-dots)"],
       },
       keyframes: {
         ring: {
@@ -158,5 +159,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix")()],
+  plugins: [require("tailwindcss-radix")(), require("@tailwindcss/typography")],
 }

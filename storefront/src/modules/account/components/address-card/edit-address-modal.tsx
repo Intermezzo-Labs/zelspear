@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useActionState } from "react"
 import { PencilSquare as Edit, Trash } from "@medusajs/icons"
 import { Button, Heading, Text, clx } from "@medusajs/ui"
 
@@ -9,7 +9,6 @@ import CountrySelect from "@modules/checkout/components/country-select"
 import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
 import Spinner from "@modules/common/icons/spinner"
-import { useFormState } from "react-dom"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 import { HttpTypes } from "@medusajs/types"
 import {
@@ -32,7 +31,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
 
-  const [formState, formAction] = useFormState(updateCustomerAddress, {
+  const [formState, formAction] = useActionState(updateCustomerAddress, {
     success: false,
     error: null,
     addressId: address.id,
@@ -81,10 +80,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             {address.first_name} {address.last_name}
           </Heading>
           {address.company && (
-            <Text
-              className="txt-compact-small text-ui-fg-base"
-              data-testid="address-company"
-            >
+            <Text className="txt-compact-small" data-testid="address-company">
               {address.company}
             </Text>
           )}
@@ -104,7 +100,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </div>
         <div className="flex items-center gap-x-4">
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
+            className="text-small-regular flex items-center gap-x-2"
             onClick={open}
             data-testid="address-edit-button"
           >
@@ -112,7 +108,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             Edit
           </button>
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
+            className="text-small-regular flex items-center gap-x-2"
             onClick={removeAddress}
             data-testid="address-delete-button"
           >
@@ -127,6 +123,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
           <Heading className="mb-2">Edit address</Heading>
         </Modal.Title>
         <form action={formAction}>
+          <input type="hidden" name="addressId" value={address.id} />
           <Modal.Body>
             <div className="grid grid-cols-1 gap-y-2">
               <div className="grid grid-cols-2 gap-x-2">

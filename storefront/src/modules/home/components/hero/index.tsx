@@ -1,32 +1,35 @@
-import { Github } from "@medusajs/icons"
-import { Button, Heading } from "@medusajs/ui"
+import { ArrowRight } from "@medusajs/icons"
+import { Button, Heading, Text } from "@medusajs/ui"
+import Image from "next/image"
+import Link from "next/link"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
+    <div className="h-[75vh] w-full relative bg-red-600">
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
           <Heading
             level="h1"
-            className="text-3xl leading-10 text-ui-fg-base font-normal"
+            className="font-display text-4xl leading-10 text-ui-fg-on-inverted font-normal"
           >
-            Well done! You have successfully deployed your Medusa 2.0 store on Railway!
+            Win a Nintendo Switch 2!
           </Heading>
-          <Heading
-            level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
-          >
-            Need help customizing your store?
-          </Heading>
+          <Text className="text-xsmall-regular uppercase">
+            NO PURCHASE NECESSARY TO ENTER OR WIN. Void where prohibited by law.
+          </Text>
+          <Image
+            src="/switch.webp"
+            alt="Nintendo Switch 2"
+            width={588}
+            height={425}
+          />
         </span>
-        <a
-          href="https://funkyton.com/medusajs-2-0-is-finally-here/"
-          target="_blank"
-        >
-          <h1 style={{ textDecoration: "underline" }}>
-            Visit the tutorial
-          </h1>
-        </a>
+        <Link href="/giveaway">
+          <Button variant="transparent" className="text-white hover:text-black">
+            Learn more
+            <ArrowRight />
+          </Button>
+        </Link>
       </div>
     </div>
   )

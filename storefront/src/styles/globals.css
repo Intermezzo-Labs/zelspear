@@ -2,6 +2,27 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+  :root {
+    --fg-base: rgb(255 255 255);
+    --fg-subtle: rgb(90, 90, 90);
+    --fg-disabled: rgb(85, 85, 85);
+
+    --bg-disabled: #222;
+    --bg-field: rgb(21, 21, 21);
+    --bg-field-hover: rgb(47, 47, 47);
+    --border-base: rgb(50, 50, 50);
+    --bg-subtle: rgb(46, 46, 46);
+
+    --button-neutral: rgba(10, 10, 10, 0.6);
+    --button-neutral-hover: rgba(10, 10, 10, 0.2);
+  }
+
+  html {
+    @apply bg-black text-white;
+  }
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

@@ -52,7 +52,10 @@ export function getProductPrice({
         )
       })[0]
 
-    return getPricesForVariant(cheapestVariant)
+    return {
+      ...getPricesForVariant(cheapestVariant),
+      entries: product.metadata?.entries ?? 0,
+    }
   }
 
   const variantPrice = () => {

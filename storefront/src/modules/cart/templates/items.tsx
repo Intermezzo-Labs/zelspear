@@ -6,10 +6,11 @@ import Item from "@modules/cart/components/item"
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
 
 type ItemsTemplateProps = {
-  items?: HttpTypes.StoreCartLineItem[]
+  cart?: HttpTypes.StoreCart
 }
 
-const ItemsTemplate = ({ items }: ItemsTemplateProps) => {
+const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
+  const items = cart?.items
   return (
     <div>
       <div className="pb-3 flex items-center">
@@ -17,8 +18,8 @@ const ItemsTemplate = ({ items }: ItemsTemplateProps) => {
       </div>
       <Table>
         <Table.Header className="border-t-0">
-          <Table.Row className="text-ui-fg-subtle txt-medium-plus">
-            <Table.HeaderCell className="!pl-0">Item</Table.HeaderCell>
+          <Table.Row className=" txt-medium-plus !bg-black !text-white !border-ui-fg-subtle">
+            <Table.HeaderCell className="!pl-0 bg">Item</Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell className="hidden small:table-cell">
@@ -36,7 +37,13 @@ const ItemsTemplate = ({ items }: ItemsTemplateProps) => {
                   return (a.created_at ?? "") > (b.created_at ?? "") ? -1 : 1
                 })
                 .map((item) => {
-                  return <Item key={item.id} item={item} />
+                  return (
+                    <Item
+                      key={item.id}
+                      item={item}
+                      currencyCode={cart?.currency_code}
+                    />
+                  )
                 })
             : repeat(5).map((i) => {
                 return <SkeletonLineItem key={i} />

@@ -18,7 +18,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
           <span data-testid="welcome-message" data-value={customer?.first_name}>
             Hello {customer?.first_name}
           </span>
-          <span className="text-small-regular text-ui-fg-base">
+          <span className="text-small-regular">
             Signed in as:{" "}
             <span
               className="font-semibold"
@@ -29,7 +29,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             </span>
           </span>
         </div>
-        <div className="flex flex-col py-8 border-t border-gray-200">
+        <div className="flex flex-col py-8 border-t border-ui-fg-subtle">
           <div className="flex flex-col gap-y-4 h-full col-span-1 row-span-2 flex-1">
             <div className="flex items-start gap-x-16 mb-6">
               <div className="flex flex-col gap-y-4">
@@ -42,9 +42,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                   >
                     {getProfileCompletion(customer)}%
                   </span>
-                  <span className="uppercase text-base-regular text-ui-fg-subtle">
-                    Completed
-                  </span>
+                  <span className="uppercase text-base-regular">Completed</span>
                 </div>
               </div>
 
@@ -58,9 +56,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                   >
                     {customer?.addresses?.length || 0}
                   </span>
-                  <span className="uppercase text-base-regular text-ui-fg-subtle">
-                    Saved
-                  </span>
+                  <span className="uppercase text-base-regular">Saved</span>
                 </div>
               </div>
             </div>

@@ -1,17 +1,16 @@
-import { useFormState } from "react-dom"
-
+import { login } from "@lib/data/customer"
 import { LOGIN_VIEW } from "@modules/account/templates/login-template"
-import Input from "@modules/common/components/input"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { login } from "@lib/data/customer"
+import Input from "@modules/common/components/input"
+import { useActionState } from "react"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
 }
 
 const Login = ({ setCurrentView }: Props) => {
-  const [message, formAction] = useFormState(login, null)
+  const [message, formAction] = useActionState(login, null)
 
   return (
     <div
@@ -19,7 +18,7 @@ const Login = ({ setCurrentView }: Props) => {
       data-testid="login-page"
     >
       <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-8">
+      <p className="text-center text-base-regular mb-8">
         Sign in to access an enhanced shopping experience.
       </p>
       <form className="w-full" action={formAction}>
@@ -47,7 +46,7 @@ const Login = ({ setCurrentView }: Props) => {
           Sign in
         </SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+      <span className="text-center text-small-regular mt-6">
         Not a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
